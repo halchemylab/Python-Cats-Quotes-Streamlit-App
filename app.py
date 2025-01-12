@@ -32,19 +32,22 @@ def main():
     st.title("Inspirational Cat Quotes App 🐾")
     st.write("Click the button to generate an inspirational quote paired with an adorable cat picture!")
 
-    # Button to generate content
-    if st.button("Generate Quote"):
-        # Fetch quote
-        quote = fetch_quote()
-        st.subheader("Inspirational Quote:")
-        st.write(quote)
+    # Centering everything below the title
+    with st.container():
+        # Button to generate content
+        if st.button("Generate Quote"):
+            # Fetch quote
+            quote = fetch_quote()
+            
+            # Use markdown to adjust the font size for the quote
+            st.markdown(f"<h2 style='text-align: center; font-size: 36px;'>{quote}</h2>", unsafe_allow_html=True)
 
-        # Fetch cat image
-        cat_image_url = fetch_cat_image()
-        if cat_image_url:
-            st.image(cat_image_url, caption="Here's some feline cuteness to brighten your day!")
-        else:
-            st.error("Failed to fetch a cat image. Try again!")
+            # Fetch cat image
+            cat_image_url = fetch_cat_image()
+            if cat_image_url:
+                st.image(cat_image_url)
+            else:
+                st.error("Failed to fetch a cat image. Try again!")
 
 if __name__ == "__main__":
     main()
